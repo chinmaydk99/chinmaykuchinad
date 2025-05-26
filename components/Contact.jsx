@@ -24,7 +24,7 @@ const Contact = () => {
     const formData = new FormData(event.target);
 
     // Enter your web3 froms access key below
-    formData.append("access_key", "------Enter Access Key Here-------");
+    formData.append("access_key", "357d5129-7d42-4cfe-9334-50f0039cf65c");
 
     const response = await fetch("https://api.web3forms.com/submit", {
       method: "POST",
