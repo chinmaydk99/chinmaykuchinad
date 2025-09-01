@@ -6,26 +6,83 @@ const TechnicalSkills = ({ isDarkMode }) => {
     {
       title: 'Machine Learning & AI',
       skills: [
-        { name: 'LLM Development', items: ['Llama-3.2', 'GPT-4', 'Gemma', 'QLoRA', 'PEFT', 'LoRA'] },
-        { name: 'Multi-Agent Systems', items: ['LangGraph', 'LangChain', 'CrewAI', 'OpenAI Agents SDK'] },
-        { name: 'ML Frameworks', items: ['PyTorch', 'TensorFlow', 'Scikit-learn', 'XGBoost'] },
-        { name: 'MLOps', items: ['MLflow', 'SageMaker', 'Weights & Biases', 'Model Registry'] }
+        { 
+          name: 'LLM Development', 
+          items: [
+            { skill: 'Llama-3.2', level: 'Expert', context: 'Fine-tuned on MIMIC-IV' },
+            { skill: 'GPT-4', level: 'Advanced', context: 'API integration' },
+            { skill: 'Gemma-270M', level: 'Expert', context: 'Implemented from scratch' },
+            { skill: 'QLoRA/PEFT', level: 'Expert', context: 'Production fine-tuning' }
+          ]
+        },
+        { 
+          name: 'Multi-Agent Systems', 
+          items: [
+            { skill: 'LangGraph', level: 'Expert', context: '5-agent system' },
+            { skill: 'LangChain', level: 'Advanced', context: 'RAG implementation' },
+            { skill: 'VERL', level: 'Expert', context: 'Multi-turn RL training' }
+          ]
+        },
+        { 
+          name: 'ML Frameworks', 
+          items: [
+            { skill: 'PyTorch', level: 'Expert', context: 'Custom architectures' },
+            { skill: 'JAX', level: 'Advanced', context: 'MoE implementation' },
+            { skill: 'TensorFlow', level: 'Advanced', context: 'Production deployment' }
+          ]
+        }
       ]
     },
     {
       title: 'High-Performance Computing',
       skills: [
-        { name: 'GPU Programming', items: ['CUDA', 'Triton', 'cuDNN', 'TensorRT'] },
-        { name: 'Optimization', items: ['Quantization', 'Pruning', 'Knowledge Distillation', 'Mixed Precision'] },
-        { name: 'Parallel Computing', items: ['MPI', 'OpenMP', 'Distributed Training', 'Pipeline Parallelism'] }
+        { 
+          name: 'GPU Programming', 
+          items: [
+            { skill: 'CUDA', level: 'Expert', context: '100+ implementations' },
+            { skill: 'Triton', level: 'Expert', context: 'FlashAttention kernels' },
+            { skill: 'cuDNN', level: 'Advanced', context: 'Optimization work' },
+            { skill: 'TensorRT', level: 'Advanced', context: 'Inference optimization' }
+          ]
+        },
+        { 
+          name: 'Model Optimization', 
+          items: [
+            { skill: 'Quantization', level: 'Expert', context: '4-bit GPTQ' },
+            { skill: 'Pruning', level: 'Expert', context: '60% sparsity achieved' },
+            { skill: 'Knowledge Distillation', level: 'Advanced', context: 'Research projects' }
+          ]
+        },
+        { 
+          name: 'Distributed Systems', 
+          items: [
+            { skill: 'Distributed Training', level: 'Expert', context: 'Multi-GPU setups' },
+            { skill: 'Pipeline Parallelism', level: 'Expert', context: 'PipeEdge framework' },
+            { skill: 'Edge Computing', level: 'Advanced', context: 'Heterogeneous devices' }
+          ]
+        }
       ]
     },
     {
       title: 'Software Engineering',
       skills: [
-        { name: 'Languages', items: ['Python', 'C++', 'JavaScript', 'SQL', 'Bash'] },
-        { name: 'Cloud & DevOps', items: ['AWS', 'Docker', 'Kubernetes', 'CI/CD', 'Terraform'] },
-        { name: 'Data Engineering', items: ['Spark', 'Kafka', 'Airflow', 'PostgreSQL', 'MongoDB'] }
+        { 
+          name: 'Languages', 
+          items: [
+            { skill: 'Python', level: 'Expert', context: '5+ years' },
+            { skill: 'C++', level: 'Advanced', context: 'CUDA kernels' },
+            { skill: 'JavaScript', level: 'Intermediate', context: 'Full-stack' },
+            { skill: 'SQL', level: 'Advanced', context: 'Data pipelines' }
+          ]
+        },
+        { 
+          name: 'Production ML', 
+          items: [
+            { skill: 'MLflow', level: 'Expert', context: 'Bosch production' },
+            { skill: 'AWS SageMaker', level: 'Advanced', context: 'Honda systems' },
+            { skill: 'Docker/K8s', level: 'Advanced', context: 'Container orchestration' }
+          ]
+        }
       ]
     }
   ]
@@ -55,14 +112,31 @@ const TechnicalSkills = ({ isDarkMode }) => {
                     <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                       {skillGroup.name}
                     </h4>
-                    <div className="flex flex-wrap gap-2">
-                      {skillGroup.items.map((skill, skillIndex) => (
-                        <span
-                          key={skillIndex}
-                          className="px-3 py-1 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 text-sm rounded"
-                        >
-                          {skill}
-                        </span>
+                    <div className="space-y-2">
+                      {skillGroup.items.map((item, skillIndex) => (
+                        <div key={skillIndex} className="flex items-center justify-between p-2 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded">
+                          <div>
+                            <span className="text-gray-800 dark:text-gray-200 text-sm font-medium">
+                              {typeof item === 'string' ? item : item.skill}
+                            </span>
+                            {typeof item === 'object' && item.context && (
+                              <span className="text-gray-500 dark:text-gray-400 text-xs ml-2">
+                                • {item.context}
+                              </span>
+                            )}
+                          </div>
+                          {typeof item === 'object' && item.level && (
+                            <span className={`px-2 py-0.5 text-xs rounded ${
+                              item.level === 'Expert' 
+                                ? 'bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200'
+                                : item.level === 'Advanced'
+                                ? 'bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200'
+                                : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300'
+                            }`}>
+                              {item.level}
+                            </span>
+                          )}
+                        </div>
                       ))}
                     </div>
                   </div>
