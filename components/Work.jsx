@@ -76,7 +76,8 @@ const Work = ({ isDarkMode }) => {
       links: {
         github: 'https://github.com/chinmaydk99/Multiagent-Marketing-Campaign-Generator'
       },
-      visual: 'multiagent'
+      visual: 'multiagent',
+      techLogos: ['react.svg', 'git.png']
     },
     {
       title: 'LLM-Based Clinical Diagnosis System',
@@ -112,11 +113,12 @@ const Work = ({ isDarkMode }) => {
       metrics: {
         'Implementations': '100+',
         'Techniques': '50+',
-        'Stars': '150+'
+        'Educational': 'Open Source'
       },
       links: {
         github: 'https://github.com/chinmaydk99/100-Days-Of-CUDA'
-      }
+      },
+      techLogos: ['vscode.png', 'git.png']
     },
     {
       title: 'GPTQ: 4-bit LLM Inference',
@@ -155,21 +157,16 @@ const Work = ({ isDarkMode }) => {
                   : 'border-gray-200 dark:border-gray-800'
               } rounded-lg p-6 hover:border-gray-300 dark:hover:border-gray-700 transition-colors`}
             >
-              <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
-                {/* Visual Component */}
-                {project.visual && (
-                  <div className="lg:w-64 lg:order-2">
-                    <ProjectVisual type={project.visual} className="w-full h-32" />
-                  </div>
-                )}
-                
-                <div className="flex-1">
-                  {project.highlight && (
-                    <div className="inline-block px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs rounded mb-2">
-                      Featured Project
-                    </div>
-                  )}
-                  <h3 className="text-xl font-medium text-gray-900 dark:text-white mb-2">
+              {project.highlight && (
+                <div className="inline-block px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs rounded mb-4">
+                  Featured Project
+                </div>
+              )}
+              
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                {/* Left Content */}
+                <div className="lg:col-span-7">
+                  <h3 className="text-xl font-medium text-gray-900 dark:text-white mb-3">
                     {project.title}
                   </h3>
                   
@@ -186,6 +183,23 @@ const Work = ({ isDarkMode }) => {
                         {tech}
                       </span>
                     ))}
+                    {/* Technology logos */}
+                    {project.techLogos && (
+                      <div className="flex gap-2 ml-2">
+                        {project.techLogos.map((logo, logoIndex) => (
+                          <div 
+                            key={logoIndex}
+                            className="w-6 h-6 bg-white dark:bg-gray-800 rounded border border-gray-200 dark:border-gray-700 flex items-center justify-center"
+                          >
+                            <img 
+                              src={`/${logo}`} 
+                              alt="Technology"
+                              className="w-4 h-4 object-contain"
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
 
                   <div className="flex flex-wrap gap-4">
@@ -225,10 +239,22 @@ const Work = ({ isDarkMode }) => {
                   </div>
                 </div>
 
-                {/* Metrics */}
-                {!project.visual && (
-                  <div className="lg:w-64">
-                    <div className="grid grid-cols-2 lg:grid-cols-1 gap-3">
+                {/* Right Content - Visual and Metrics */}
+                <div className="lg:col-span-5">
+                  {project.visual ? (
+                    <div className="space-y-4">
+                      <ProjectVisual type={project.visual} className="w-full h-32" />
+                      <div className="grid grid-cols-3 gap-2 text-center">
+                        {Object.entries(project.metrics).map(([key, value], metricIndex) => (
+                          <div key={metricIndex} className="bg-gray-50 dark:bg-gray-800 p-2 rounded">
+                            <div className="text-sm font-medium text-gray-900 dark:text-white">{value}</div>
+                            <div className="text-xs text-gray-500 dark:text-gray-400">{key}</div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="grid grid-cols-1 gap-3">
                       {Object.entries(project.metrics).map(([key, value], metricIndex) => (
                         <div key={metricIndex} className="flex justify-between items-center">
                           <span className="text-sm text-gray-500 dark:text-gray-500">{key}</span>
@@ -236,22 +262,8 @@ const Work = ({ isDarkMode }) => {
                         </div>
                       ))}
                     </div>
-                  </div>
-                )}
-                
-                {/* Metrics below visual for projects with visuals */}
-                {project.visual && (
-                  <div className="lg:order-3 lg:w-full">
-                    <div className="grid grid-cols-3 gap-4 text-center mt-4">
-                      {Object.entries(project.metrics).map(([key, value], metricIndex) => (
-                        <div key={metricIndex} className="bg-gray-50 dark:bg-gray-800 p-2 rounded">
-                          <div className="text-sm font-medium text-gray-900 dark:text-white">{value}</div>
-                          <div className="text-xs text-gray-500 dark:text-gray-400">{key}</div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
+                  )}
+                </div>
               </div>
             </div>
           ))}

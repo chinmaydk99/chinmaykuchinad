@@ -29,7 +29,7 @@ const Achievements = ({ isDarkMode }) => {
         {
           title: 'Open Source Projects',
           description: '100 Days of CUDA - Educational resource with daily implementations',
-          metric: '150+ GitHub stars'
+          metric: 'Educational impact'
         },
         {
           title: 'Model Architecture',

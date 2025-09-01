@@ -9,6 +9,7 @@ const WorkExperience = ({isDarkMode}) => {
       location: 'Los Angeles, CA',
       period: 'Jul 2025 - Present',
       current: true,
+      logo: 'user-image.png',
       description: [
         'Building multi-turn RL-based CUDA code generation system using VERL backend',
         'Researching efficient training strategies for code generation models',
@@ -20,6 +21,7 @@ const WorkExperience = ({isDarkMode}) => {
       company: 'USC Information Sciences Institute',
       location: 'Los Angeles, CA',
       period: 'Feb 2025 - May 2025',
+      logo: 'user-image.png',
       description: [
         'Developing pipeline parallelism strategies for PipeEdge framework with dynamic partitioning algorithms',
         'Reduced end-to-end latency by 43% through intelligent layer allocation across heterogeneous edge devices',
@@ -31,6 +33,7 @@ const WorkExperience = ({isDarkMode}) => {
       company: 'Samsung Electronics America',
       location: 'Ridgefield Park, NJ',
       period: 'Jun 2024 - Aug 2024',
+      logo: 'vscode.png',
       description: [
         'Developed multi-agent email campaign generation system using LangGraph and open-source LLMs',
         'Engineered ChromaDB-powered RAG system for precise product information retrieval',
@@ -42,6 +45,7 @@ const WorkExperience = ({isDarkMode}) => {
       company: 'Bosch Global Software Technologies',
       location: 'Bangalore, India',
       period: 'Sep 2020 - Dec 2022',
+      logo: 'git.png',
       description: [
         'Built production ML pipelines using MLflow and AWS SageMaker for engine performance optimization',
         'Reduced RAM usage prediction error by 32% for Honda Japan automotive systems',
@@ -54,6 +58,7 @@ const WorkExperience = ({isDarkMode}) => {
       company: 'Bosch Global Software Technologies',
       location: 'Bangalore, India',
       period: 'Jan 2020 - May 2020',
+      logo: 'git.png',
       description: [
         'Implemented ML pipeline for customer feedback classification using scikit-learn',
         'Deployed inference API using FastAPI and Docker for text classification model'
@@ -78,12 +83,18 @@ const WorkExperience = ({isDarkMode}) => {
             <div key={index} className="relative">
               {/* Timeline line */}
               {index !== experiences.length - 1 && (
-                <div className="absolute left-0 top-8 bottom-0 w-px bg-gray-200 dark:bg-gray-800 ml-2"></div>
+                <div className="absolute left-0 top-12 bottom-0 w-px bg-gray-200 dark:bg-gray-800 ml-6"></div>
               )}
               
               <div className="flex gap-6">
-                {/* Timeline dot */}
-                <div className="flex-shrink-0 w-4 h-4 rounded-full bg-gray-400 dark:bg-gray-600 mt-2"></div>
+                {/* Company logo */}
+                <div className="flex-shrink-0 w-12 h-12 rounded-full overflow-hidden bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 flex items-center justify-center">
+                  <img 
+                    src={`/${exp.logo}`} 
+                    alt={exp.company}
+                    className="w-8 h-8 object-contain"
+                  />
+                </div>
                 
                 {/* Content */}
                 <div className="flex-1 pb-8">
