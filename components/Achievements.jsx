@@ -68,13 +68,35 @@ const Achievements = ({ isDarkMode }) => {
   return (
     <section className="py-20 bg-white dark:bg-gray-900">
       <div className="max-w-6xl mx-auto px-6">
-        <div className="mb-12">
+        <div className="mb-12 text-center">
           <h2 className="text-3xl font-light text-gray-900 dark:text-white mb-4">
             Key Achievements
           </h2>
-          <p className="text-gray-600 dark:text-gray-400 max-w-3xl">
+          <p className="text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
             Measurable impact across research, production systems, and open source contributions.
           </p>
+          
+          {/* Quick Action Buttons */}
+          <div className="flex flex-wrap justify-center gap-4 mt-8">
+            <a
+              href="/projects"
+              className="px-6 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-lg hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors"
+            >
+              View All Projects
+            </a>
+            <a
+              href="/experience"
+              className="px-6 py-3 border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-white rounded-lg hover:border-gray-400 dark:hover:border-gray-600 transition-colors"
+            >
+              Experience & Skills
+            </a>
+            <a
+              href="/about"
+              className="px-6 py-3 border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-white rounded-lg hover:border-gray-400 dark:hover:border-gray-600 transition-colors"
+            >
+              Education & Research
+            </a>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -111,15 +133,15 @@ const Achievements = ({ isDarkMode }) => {
               <div className="text-sm text-gray-500 dark:text-gray-400">Major Projects</div>
             </div>
             <div>
-              <div className="text-3xl font-light text-gray-900 dark:text-white mb-1">3</div>
-              <div className="text-sm text-gray-500 dark:text-gray-400">Research Publications</div>
+              <div className="text-3xl font-light text-gray-900 dark:text-white mb-1">5+</div>
+              <div className="text-sm text-gray-500 dark:text-gray-400">HuggingFace Models</div>
             </div>
             <div>
               <div className="text-3xl font-light text-gray-900 dark:text-white mb-1">100+</div>
               <div className="text-sm text-gray-500 dark:text-gray-400">CUDA Implementations</div>
             </div>
             <div>
-              <div className="text-3xl font-light text-gray-900 dark:text-white mb-1">5</div>
+              <div className="text-3xl font-light text-gray-900 dark:text-white mb-1">3+</div>
               <div className="text-sm text-gray-500 dark:text-gray-400">Years Experience</div>
             </div>
           </div>

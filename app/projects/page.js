@@ -2,10 +2,9 @@
 import { useEffect, useState } from "react";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
-import WorkExperience from "../../components/WorkExperience";
-import TechnicalSkills from "../../components/TechnicalSkills";
+import Work from "../../components/Work";
 
-export default function ExperiencePage() {
+export default function ProjectsPage() {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
@@ -33,15 +32,15 @@ export default function ExperiencePage() {
         <div className="max-w-6xl mx-auto px-6 py-12">
           <div className="mb-12">
             <h1 className="text-4xl font-light text-gray-900 dark:text-white mb-4">
-              Experience & Skills
+              Projects
             </h1>
             <p className="text-gray-600 dark:text-gray-400 max-w-3xl">
-              Professional journey and technical expertise in machine learning engineering and AI research.
+              Comprehensive showcase of research and engineering projects in deep learning, 
+              GPU optimization, and production ML systems.
             </p>
           </div>
         </div>
-        <WorkExperience isDarkMode={isDarkMode} />
-        <TechnicalSkills isDarkMode={isDarkMode} />
+        <Work isDarkMode={isDarkMode} />
       </div>
       <Footer isDarkMode={isDarkMode} />
     </>

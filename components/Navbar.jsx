@@ -16,11 +16,10 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
   }, [])
 
   const navLinks = [
-    { href: '#experience', label: 'Experience' },
-    { href: '#projects', label: 'Projects' },
-    { href: '#skills', label: 'Skills' },
-    { href: '#education', label: 'Education' },
-    { href: '#contact', label: 'Contact' }
+    { href: '/experience', label: 'Experience' },
+    { href: '/projects', label: 'Projects' },
+    { href: '/about', label: 'About' },
+    { href: '/#contact', label: 'Contact' }
   ]
 
   return (
@@ -30,7 +29,7 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
       <div className="max-w-6xl mx-auto px-6">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <a href="#" className="text-xl font-light text-gray-900 dark:text-white">
+          <a href="/" className="text-xl font-light text-gray-900 dark:text-white">
             CK
           </a>
 

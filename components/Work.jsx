@@ -1,6 +1,7 @@
 'use client'
 import React from 'react'
 import { FaGithub, FaExternalLinkAlt, FaFilePdf } from 'react-icons/fa'
+import ProjectVisual from './ProjectVisual'
 
 const Work = ({ isDarkMode }) => {
   const projects = [
@@ -16,7 +17,8 @@ const Work = ({ isDarkMode }) => {
       links: {
         github: 'https://github.com/chinmaydk99/multiminddev/tree/multiturn-rl'
       },
-      highlight: true
+      highlight: true,
+      visual: 'verl'
     },
     {
       title: 'Gemma3-270M From Scratch',
@@ -30,7 +32,8 @@ const Work = ({ isDarkMode }) => {
       links: {
         github: 'https://github.com/chinmaydk99/Gemma3-270M-From_Scratch'
       },
-      highlight: true
+      highlight: true,
+      visual: 'gemma'
     },
     {
       title: 'MakeMoE: Mixture of Experts in JAX',
@@ -44,7 +47,8 @@ const Work = ({ isDarkMode }) => {
       links: {
         github: 'https://github.com/chinmaydk99/makeMoE-JAX'
       },
-      highlight: true
+      highlight: true,
+      visual: 'moe'
     },
     {
       title: 'FlashAttention v2 GPU Optimization',
@@ -57,7 +61,8 @@ const Work = ({ isDarkMode }) => {
       },
       links: {
         github: 'https://github.com/chinmaydk99/Flash_Attention_v2_GPU_Optimized'
-      }
+      },
+      visual: 'flashattention'
     },
     {
       title: 'Multi-Agent Marketing Campaign Generator',
@@ -70,7 +75,8 @@ const Work = ({ isDarkMode }) => {
       },
       links: {
         github: 'https://github.com/chinmaydk99/Multiagent-Marketing-Campaign-Generator'
-      }
+      },
+      visual: 'multiagent'
     },
     {
       title: 'LLM-Based Clinical Diagnosis System',
@@ -150,7 +156,19 @@ const Work = ({ isDarkMode }) => {
               } rounded-lg p-6 hover:border-gray-300 dark:hover:border-gray-700 transition-colors`}
             >
               <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
+                {/* Visual Component */}
+                {project.visual && (
+                  <div className="lg:w-64 lg:order-2">
+                    <ProjectVisual type={project.visual} className="w-full h-32" />
+                  </div>
+                )}
+                
                 <div className="flex-1">
+                  {project.highlight && (
+                    <div className="inline-block px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs rounded mb-2">
+                      Featured Project
+                    </div>
+                  )}
                   <h3 className="text-xl font-medium text-gray-900 dark:text-white mb-2">
                     {project.title}
                   </h3>
@@ -208,16 +226,32 @@ const Work = ({ isDarkMode }) => {
                 </div>
 
                 {/* Metrics */}
-                <div className="lg:w-64">
-                  <div className="grid grid-cols-2 lg:grid-cols-1 gap-3">
-                    {Object.entries(project.metrics).map(([key, value], metricIndex) => (
-                      <div key={metricIndex} className="flex justify-between items-center">
-                        <span className="text-sm text-gray-500 dark:text-gray-500">{key}</span>
-                        <span className="text-sm font-medium text-gray-900 dark:text-white">{value}</span>
-                      </div>
-                    ))}
+                {!project.visual && (
+                  <div className="lg:w-64">
+                    <div className="grid grid-cols-2 lg:grid-cols-1 gap-3">
+                      {Object.entries(project.metrics).map(([key, value], metricIndex) => (
+                        <div key={metricIndex} className="flex justify-between items-center">
+                          <span className="text-sm text-gray-500 dark:text-gray-500">{key}</span>
+                          <span className="text-sm font-medium text-gray-900 dark:text-white">{value}</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                </div>
+                )}
+                
+                {/* Metrics below visual for projects with visuals */}
+                {project.visual && (
+                  <div className="lg:order-3 lg:w-full">
+                    <div className="grid grid-cols-3 gap-4 text-center mt-4">
+                      {Object.entries(project.metrics).map(([key, value], metricIndex) => (
+                        <div key={metricIndex} className="bg-gray-50 dark:bg-gray-800 p-2 rounded">
+                          <div className="text-sm font-medium text-gray-900 dark:text-white">{value}</div>
+                          <div className="text-xs text-gray-500 dark:text-gray-400">{key}</div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           ))}
