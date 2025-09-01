@@ -1,31 +1,43 @@
-import { assets } from '@/assets/assets'
-import Image from 'next/image'
+'use client'
 import React from 'react'
 
 const Footer = ({isDarkMode}) => {
   return (
-    <div className='mt-20'>
-      <div className='text-center'>
-        <h2 className='text-3xl font-bold text-gray-800 dark:text-white mb-2'>
-          Chinmay<span className='text-blue-600 dark:text-blue-400'>.</span>
-        </h2>
-
-        <div className='w-max flex items-center gap-2 mx-auto'>
-            <Image src={isDarkMode ? assets.mail_icon_dark : assets.mail_icon} alt='' className='w-6'/>
-            ckuchina@usc.edu
+    <footer className='bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 py-8 mt-0'>
+      <div className='max-w-6xl mx-auto px-6'>
+        <div className='flex flex-col md:flex-row items-center justify-between'>
+          <p className='text-gray-600 dark:text-gray-400 text-sm'>
+            © 2025 Chinmay Kuchinad. All rights reserved.
+          </p>
+          <div className='flex items-center gap-6 mt-4 md:mt-0'>
+            <a 
+              href="https://github.com/chinmaydk99" 
+              target='_blank' 
+              rel='noopener noreferrer'
+              className='text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors text-sm'
+            >
+              GitHub
+            </a>
+            <a 
+              href="https://www.linkedin.com/in/chinmay-dattanand-kuchinad-a01168171" 
+              target='_blank' 
+              rel='noopener noreferrer'
+              className='text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors text-sm'
+            >
+              LinkedIn
+            </a>
+            <a 
+              href="https://huggingface.co/chinmaydk99" 
+              target='_blank' 
+              rel='noopener noreferrer'
+              className='text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors text-sm'
+            >
+              HuggingFace
+            </a>
+          </div>
         </div>
       </div>
-
-    <div className='text-center sm:flex items-center justify-between border-t border-gray-400 mx-[10%] mt-12 py-6'>
-        <p>© 2025 Chinmay Kuchinad. All rights reserved.</p>
-        <ul className='flex items-center gap-10 justify-center mt-4 sm:mt-0'>
-            <li><a target='_blank' href="https://github.com/chinmaydk99" className='hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300'>GitHub</a></li>
-            <li><a target='_blank' href="https://linkedin.com/in/chinmay-dattanand-kuchinad-a01168171" className='hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300'>LinkedIn</a></li>
-            <li><a target='_blank' href="https://github.com/chinmaydk99" className='hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300'>Portfolio</a></li>
-        </ul>
-    </div>
-
-    </div>
+    </footer>
   )
 }
 

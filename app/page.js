@@ -8,7 +8,6 @@ import Navbar from "../components/Navbar";
 import WorkExperience from "../components/WorkExperience";
 import Work from "../components/Work";
 import TechnicalSkills from "../components/TechnicalSkills";
-import Blogs from "../components/Blogs";
 
 export default function Home() {
 
@@ -36,11 +35,10 @@ export default function Home() {
     <>
     <Navbar isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode}/>
     <Header isDarkMode={isDarkMode} />
-    <About isDarkMode={isDarkMode} />
     <WorkExperience isDarkMode={isDarkMode} />
-    <TechnicalSkills isDarkMode={isDarkMode} />
     <Work isDarkMode={isDarkMode} />
-    <Blogs isDarkMode={isDarkMode} />
+    <TechnicalSkills isDarkMode={isDarkMode} />
+    <About isDarkMode={isDarkMode} />
     <Contact isDarkMode={isDarkMode} />
     <Footer isDarkMode={isDarkMode} />
     </>

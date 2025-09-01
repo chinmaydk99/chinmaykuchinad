@@ -5,6 +5,48 @@ import { FaGithub, FaExternalLinkAlt, FaFilePdf } from 'react-icons/fa'
 const Work = ({ isDarkMode }) => {
   const projects = [
     {
+      title: 'MultiMindDev: RL-Based CUDA Code Generation',
+      description: 'Multi-turn reinforcement learning system using VERL backend for distributed CUDA code generation with iterative refinement.',
+      technologies: ['VERL', 'Reinforcement Learning', 'CUDA', 'Distributed Training'],
+      metrics: {
+        'Training Method': 'Multi-turn RL',
+        'Backend': 'VERL',
+        'Optimization': 'Distributed'
+      },
+      links: {
+        github: 'https://github.com/chinmaydk99/multiminddev/tree/multiturn-rl'
+      },
+      highlight: true
+    },
+    {
+      title: 'Gemma3-270M From Scratch',
+      description: 'Custom implementation and pre-training of Gemma3-270M model with sliding window attention mechanism from scratch.',
+      technologies: ['Model Architecture', 'Pre-training', 'Sliding Window Attention', 'PyTorch'],
+      metrics: {
+        'Parameters': '270M',
+        'Training': 'From Scratch',
+        'Architecture': 'Custom Gemma3'
+      },
+      links: {
+        github: 'https://github.com/chinmaydk99/Gemma3-270M-From_Scratch'
+      },
+      highlight: true
+    },
+    {
+      title: 'MakeMoE: Mixture of Experts in JAX',
+      description: 'Implementation of Mixture of Experts (MoE) architecture in JAX for efficient sparse model training and inference.',
+      technologies: ['JAX', 'Mixture of Experts', 'Sparse Models', 'Expert Routing'],
+      metrics: {
+        'Framework': 'JAX',
+        'Architecture': 'MoE',
+        'Gating': 'Top-K Routing'
+      },
+      links: {
+        github: 'https://github.com/chinmaydk99/makeMoE-JAX'
+      },
+      highlight: true
+    },
+    {
       title: 'FlashAttention v2 GPU Optimization',
       description: 'Custom CUDA/Triton implementation achieving 2x memory efficiency and 40% speed improvement for transformer attention mechanisms.',
       technologies: ['CUDA', 'Triton', 'PyTorch', 'GPU Optimization'],
@@ -97,11 +139,15 @@ const Work = ({ isDarkMode }) => {
           </p>
         </div>
 
-        <div className="space-y-8">
+        <div className="space-y-6">
           {projects.map((project, index) => (
             <div
               key={index}
-              className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6 hover:border-gray-300 dark:hover:border-gray-700 transition-colors"
+              className={`bg-white dark:bg-gray-900 border ${
+                project.highlight 
+                  ? 'border-blue-200 dark:border-blue-900' 
+                  : 'border-gray-200 dark:border-gray-800'
+              } rounded-lg p-6 hover:border-gray-300 dark:hover:border-gray-700 transition-colors`}
             >
               <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
                 <div className="flex-1">
