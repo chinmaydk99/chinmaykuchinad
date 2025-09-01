@@ -1,101 +1,110 @@
-import { assets } from '@/assets/assets'
-import Image from 'next/image'
-import React, { useEffect, useRef, useState } from 'react'
+'use client'
+import React, { useEffect, useState } from 'react'
+import { HiMenu, HiX } from 'react-icons/hi'
+import { BsMoon, BsSun } from 'react-icons/bs'
 
-const Navbar = ({isDarkMode, setIsDarkMode}) => {
+const Navbar = ({ isDarkMode, setIsDarkMode }) => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
 
-    const [isScroll, setIsScroll] = useState(false)
-    const [isMenuOpen, setIsMenuOpen] = useState(false)
-    const [scrollProgress, setScrollProgress] = useState(0)
-    const sideMenuRef = useRef();
-
-    const openMenu = ()=>{
-        sideMenuRef.current.style.transform = 'translateX(-16rem)'
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20)
     }
-    const closeMenu = ()=>{
-        sideMenuRef.current.style.transform = 'translateX(16rem)'
-    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
-    useEffect(()=>{
-        const handleScroll = () => {
-            if(window.scrollY > 50){
-                setIsScroll(true)
-            }else{
-                setIsScroll(false)
-            }
-
-            // Calculate scroll progress
-            const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const progress = (window.scrollY / totalHeight) * 100;
-            setScrollProgress(progress);
-        }
-
-        window.addEventListener('scroll', handleScroll)
-        return () => window.removeEventListener('scroll', handleScroll)
-    },[])
+  const navLinks = [
+    { href: '#experience', label: 'Experience' },
+    { href: '#projects', label: 'Projects' },
+    { href: '#skills', label: 'Skills' },
+    { href: '#education', label: 'Education' },
+    { href: '#contact', label: 'Contact' }
+  ]
 
   return (
-    <>
-    <div className='fixed top-0 right-0 w-11/12 -z-10 translate-y-[-80%] dark:hidden'>
-       <Image src={assets.header_bg_color} alt='' className='w-full' />
-    </div>
-
-      <div className={`fixed top-0 right-0 w-full z-50 transition-all duration-500 ${isScroll ? "bg-white bg-opacity-50 backdrop-blur-lg shadow-sm dark:bg-darkTheme dark:shadow-white/20" : ""}`}>
-        
-        {/* Progress Bar */}
-        <div className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-blue-500 to-purple-600 transition-all duration-300 ease-out" 
-             style={{ width: `${scrollProgress}%` }}></div>
-
-        <nav className='w-full px-5 lg:px-8 xl:px-[8%] py-4 flex items-center justify-between'>
-          <a href="#top" className='text-2xl font-bold text-gray-800 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300 cursor-pointer'>
-              Chinmay<span className='text-blue-600 dark:text-blue-400'>.</span>
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      isScrolled ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800' : 'bg-transparent'
+    }`}>
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="flex items-center justify-between h-16">
+          {/* Logo */}
+          <a href="#" className="text-xl font-light text-gray-900 dark:text-white">
+            CK
           </a>
 
-          <ul className={`hidden md:flex items-center gap-6 lg:gap-8 rounded-full px-12 py-3 ${isScroll ? "" : "bg-white shadow-sm bg-opacity-50 dark:border dark:border-white/50 dark:bg-transparent"}`}>
-              <li><a className='font-Ovo' href="#top">Home</a></li>
-              <li><a className='font-Ovo' href="#about">About</a></li>
-              <li><a className='font-Ovo' href="#workexp">Work Experience</a></li>
-              <li><a className='font-Ovo' href="#projects">Projects</a></li>
-              <li><a className='font-Ovo' href="#skills">Technical Skills</a></li>
-              <li><a className='font-Ovo' href="#blogs">Blogs</a></li>
-              <li><a className='font-Ovo' href="#contact">Contact</a></li>
-          </ul>
-
-          <div className='flex items-center gap-4'>
-
-              <button onClick={()=> setIsDarkMode(prev => !prev)}>
-                  <Image src={isDarkMode ? assets.sun_icon : assets.moon_icon} alt='' className='w-6' />
-              </button>
-
-              <a href="#contact" className='hidden lg:flex items-center gap-3 px-10 py-2.5 border border-gray-500 rounded-full ml-4 font-Ovo dark:border-white/50'>Contact 
-              <Image src={isDarkMode ? assets.arrow_icon_dark : assets.arrow_icon} alt="" className='w-3'/></a>
-
-              <button className='block md:hidden ml-3' onClick={openMenu}>
-              <Image src={isDarkMode ? assets.menu_white : assets.menu_black} alt='' className='w-6' />
-              </button>
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-8">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors text-sm"
+              >
+                {link.label}
+              </a>
+            ))}
+            
+            {/* Theme Toggle */}
+            <button
+              onClick={() => setIsDarkMode(!isDarkMode)}
+              className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              aria-label="Toggle theme"
+            >
+              {isDarkMode ? (
+                <BsSun className="w-4 h-4 text-gray-600 dark:text-gray-400" />
+              ) : (
+                <BsMoon className="w-4 h-4 text-gray-600 dark:text-gray-400" />
+              )}
+            </button>
           </div>
 
-          {/* -- ----- mobile menu ------  -- */}
+          {/* Mobile Menu Button */}
+          <div className="md:hidden flex items-center gap-4">
+            <button
+              onClick={() => setIsDarkMode(!isDarkMode)}
+              className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              aria-label="Toggle theme"
+            >
+              {isDarkMode ? (
+                <BsSun className="w-4 h-4 text-gray-600 dark:text-gray-400" />
+              ) : (
+                <BsMoon className="w-4 h-4 text-gray-600 dark:text-gray-400" />
+              )}
+            </button>
+            
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              aria-label="Toggle menu"
+            >
+              {isMenuOpen ? (
+                <HiX className="w-5 h-5 text-gray-600 dark:text-gray-400" />
+              ) : (
+                <HiMenu className="w-5 h-5 text-gray-600 dark:text-gray-400" />
+              )}
+            </button>
+          </div>
+        </div>
 
-          <ul ref={sideMenuRef} className='flex md:hidden flex-col gap-4 py-20 px-10 fixed -right-64 top-0 bottom-0 w-64 z-50 h-screen bg-rose-50 transition duration-500 dark:bg-darkHover dark:text-white'>
-
-              <div className='absolute right-6 top-6' onClick={closeMenu}>
-                  <Image src={isDarkMode ? assets.close_white : assets.close_black} alt='' className='w-5 cursor-pointer' />
-              </div>
-
-              <li><a className='font-Ovo' onClick={closeMenu} href="#top">Home</a></li>
-              <li><a className='font-Ovo' onClick={closeMenu} href="#about">About</a></li>
-              <li><a className='font-Ovo' onClick={closeMenu} href="#workexp">Work Experience</a></li>
-              <li><a className='font-Ovo' onClick={closeMenu} href="#projects">Projects</a></li>
-              <li><a className='font-Ovo' onClick={closeMenu} href="#skills">Technical Skills</a></li>
-              <li><a className='font-Ovo' onClick={closeMenu} href="#blogs">Blogs</a></li>
-              <li><a className='font-Ovo' onClick={closeMenu} href="#contact">Contact</a></li>
-          </ul>
-
-
-        </nav>
+        {/* Mobile Navigation */}
+        {isMenuOpen && (
+          <div className="md:hidden py-4 border-t border-gray-200 dark:border-gray-800">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="block py-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+        )}
       </div>
-    </>
+    </nav>
   )
 }
 
