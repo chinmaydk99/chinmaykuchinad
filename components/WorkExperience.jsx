@@ -96,7 +96,7 @@ const WorkExperience = ({isDarkMode}) => {
                             <svg className='w-4 h-4' fill='currentColor' viewBox='0 0 20 20'>
                                 <path fillRule='evenodd' d='M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z' clipRule='evenodd'/>
                             </svg>
-                            Mountain View, CA
+                            Ridgefield Park, New Jersey
                             <span className='mx-2'>•</span>
                             <svg className='w-4 h-4' fill='currentColor' viewBox='0 0 20 20'>
                                 <path fillRule='evenodd' d='M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z' clipRule='evenodd'/>

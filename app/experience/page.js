@@ -34,7 +34,7 @@ export default function ExperiencePage() {
       id: 2,
       title: 'Generative AI Application Intern',
       company: 'Samsung Electronics America',
-      location: 'Mountain View, CA',
+      location: 'Ridgefield Park, New Jersey',
       duration: 'Jun 2024 – Aug 2024',
       type: 'Internship',
       logo: assets.samsung_logo,
